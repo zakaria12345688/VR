@@ -12,6 +12,7 @@ public class KeySpawner : MonoBehaviour
         int randomIndex = Random.Range(0, keySpawnPoints.Count);
         // Spawn key on random location before instantiating key prefab
         Vector3 SpawnPosition = keySpawnPoints[randomIndex].transform.position;
+        SpawnPosition.y = 0.25f;
         KeyInstance = Instantiate(keyPrefab, SpawnPosition, Quaternion.identity);
         return KeyInstance;
     }

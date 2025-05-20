@@ -8,14 +8,26 @@ public class SeekerAgent : Agent
 {
     [Header("Environment")]
     public KeySpawner keySpawnerScript;
-    public GameObject agentTargetDoor;
+    public GameObject agentTargetDoor; // Leeglaten mag, als enableDoorSystem false blijft
+    public bool enableDoorSystem = false; // false: trainen zonder deur
     private GameObject agentKey;
+    private bool keyCollected = false; // later in code nodig
 
+    public float startX = 0.0f;
+    public float startY = 0.1f;
+    public float startZ = 0.0f;
+    [Header("Movement")]
     public float speedMultiplier = 0.5f;
+    public float rotationSpeed = 100f;
+    [Header("Training")]
+    public float keyCollectionReward = 1.0f;
+    public float doorReachReward = 1.0f;
+    public float fallPunishment = -1.0f;
 
     public override void OnEpisodeBegin()
     {
         // Geen reset positie, agent blijft waar die is
+        this.transform.localPosition = new Vector3(startX, startY, startZ);
 
         // Verwijder oude sleutel
         keySpawnerScript.DestroyKey();
@@ -23,20 +35,28 @@ public class SeekerAgent : Agent
 
         // Spawn nieuwe sleutel
         agentKey = keySpawnerScript.SpawnKey();
+
+        // Reset keyCollected
+        keyCollected = false;
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.localPosition);
+        // override functie sowieso nodig, maar mag leeg zijn aangezien we met camerasensor werken (zie componenenten op agent object)
+        // Indien enkel camera sensor, zet space size op 0 in inspector.
 
-        if (agentKey != null)
+        // Probeer eerst zonder dat agent zijn exacte coördinaten weet, als dat niet werkt, uncomment de volgende lijn
+        //sensor.AddObservation(transform.localPosition);
+
+        // Volgende lijnen zorgen dat agent exacte coördinaten van agentKey weet, maar we gebruiken liever een camera sensor
+        /*if (agentKey != null)
         {
             sensor.AddObservation(agentKey.transform.localPosition);
         }
         else
         {
             sensor.AddObservation(Vector3.zero);
-        }
+        }*/
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -44,11 +64,17 @@ public class SeekerAgent : Agent
         Vector3 move = new Vector3(actionBuffers.ContinuousActions[0], 0, actionBuffers.ContinuousActions[1]);
         transform.Translate(move * speedMultiplier);
 
+        float rotateAction = actionBuffers.ContinuousActions[2];
+        transform.Rotate(Vector3.up, rotateAction * rotationSpeed * Time.deltaTime); // Time.deltaTime zorgt ervoor dat rotation snelheid onafhankelijk is van framerate
+
         // Val check
         if (transform.localPosition.y < -1f)
         {
+            Debug.Log("Fallen");
             keySpawnerScript.DestroyKey();
+            AddReward(fallPunishment);
             agentKey = null;
+            Debug.Log(GetCumulativeReward());
             EndEpisode();
         }
     }
@@ -56,28 +82,63 @@ public class SeekerAgent : Agent
     // Nieuw: Trigger check om sleutel te pakken
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("agentKey"))
+        Debug.Log($"Collision with {other.gameObject.tag}");
+        if (other.gameObject.CompareTag("agentKey")) // check of het de juiste key is m.b.v. tag
         {
-            SetReward(1.0f);
-            Debug.Log("KeyTouched");
+            AddReward(keyCollectionReward);
             keySpawnerScript.DestroyKey();
+            if (enableDoorSystem is false) // voor trainen zonder deur (eerste trainingen)
+            {
+                Debug.Log("Key collected, door system disabled, ending episode.");
+                EndEpisode();
+            }
+            else
+            {
+                Debug.Log("Key collected, door system enabled, continuing episode.");
+                keyCollected = true;
+            }
             agentKey = null;
-
+            // volgende 2 lijnen: denk dat dit heel raar gaat doen bij trainen
             // Spawn nieuwe sleutel na korte delay
-            StartCoroutine(RespawnKeyAfterPickup());
+            // StartCoroutine(RespawnKeyAfterPickup());
+        }
+        if (other.gameObject.CompareTag("agentDoor") && keyCollected is true)
+        {
+            AddReward(doorReachReward);
+            Debug.Log("Door reached, ending episode.");
+            EndEpisode();
         }
     }
-
-    private IEnumerator RespawnKeyAfterPickup()
+    // Volgende methode: wordt nutteloos bij nieuwe versie van script, maar ik laat het staan
+    /*private IEnumerator RespawnKeyAfterPickup()
     {
         yield return new WaitForSeconds(0.2f);
         agentKey = keySpawnerScript.SpawnKey();
-    }
+    }*/
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var continuousActionsOut = actionsOut.ContinuousActions;
         continuousActionsOut[0] = Input.GetAxis("Horizontal");
         continuousActionsOut[1] = Input.GetAxis("Vertical");
+        float rotateInput = 0f;
+        if (Input.GetKey(KeyCode.Q))
+        {
+            rotateInput = -1f; // Rotate Left
+        } else if (Input.GetKey(KeyCode.E))
+        {
+            rotateInput = 1f; // Rotate Right
+        }
+        continuousActionsOut[2] = rotateInput;
     }
+    /*
+    if (Input.GetKey(KeyCode.Q))
+    {
+        rotateInput = -1f; // Rotate Left
+    }
+    else if (Input.GetKey(KeyCode.E))
+    {
+        rotateInput = 1f;  // Rotate Right
+    }
+    continuousActionsOut[2] = rotateInput;*/
 }

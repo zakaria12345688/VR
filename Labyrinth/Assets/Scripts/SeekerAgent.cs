@@ -56,10 +56,10 @@ public class SeekerAgent : Agent
     // Nieuw: Trigger check om sleutel te pakken
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == agentKey)
+        if (other.gameObject.CompareTag("agentKey"))
         {
             SetReward(1.0f);
-
+            Debug.Log("KeyTouched");
             keySpawnerScript.DestroyKey();
             agentKey = null;
 

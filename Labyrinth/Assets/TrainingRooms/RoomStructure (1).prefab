@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e1572deb2cda845a533bcad0656cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPrefab: {fileID: 2253393103804301607, guid: e360d8d16d87ca544b56a603ea831f2f, type: 3}
+  keyPrefab: {fileID: 2253393103804301607, guid: 6eb4a6e51e2209540bf3f8cd4a436102, type: 3}
   keySpawnPoints:
   - {fileID: 5551505036622786243}
   - {fileID: 5465907868365708609}

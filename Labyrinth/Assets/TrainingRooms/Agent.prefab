@@ -239,7 +239,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -345,7 +345,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -361,6 +361,8 @@ GameObject:
   - component: {fileID: 7104655209927248827}
   - component: {fileID: 7103631330810920028}
   - component: {fileID: 2335516274990009620}
+  - component: {fileID: 8924711905583629260}
+  - component: {fileID: 1103909333070117773}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -432,6 +434,7 @@ MonoBehaviour:
   MaxStep: 0
   keySpawnerScript: {fileID: 0}
   agentTargetDoor: {fileID: 0}
+  speedMultiplier: 0.5
 --- !u!114 &2335516274990009620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,3 +455,45 @@ MonoBehaviour:
   m_ObservationType: 0
   m_ObservationStacks: 1
   m_Compression: 1
+--- !u!65 &8924711905583629260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423241293033825307}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!135 &1103909333070117773
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423241293033825307}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0.5, z: 0.5}

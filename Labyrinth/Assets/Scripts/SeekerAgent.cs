@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -10,56 +9,75 @@ public class SeekerAgent : Agent
     [Header("Environment")]
     public KeySpawner keySpawnerScript;
     public GameObject agentTargetDoor;
-    private GameObject AgentKey;
+    private GameObject agentKey;
 
-
+    public float speedMultiplier = 0.5f;
 
     public override void OnEpisodeBegin()
     {
-        AgentKey = keySpawnerScript.SpawnKey();
-    }
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        // Agent positie
-        sensor.AddObservation(this.transform.localPosition);
+        // Geen reset positie, agent blijft waar die is
+
+        // Verwijder oude sleutel
+        keySpawnerScript.DestroyKey();
+        agentKey = null;
+
+        // Spawn nieuwe sleutel
+        agentKey = keySpawnerScript.SpawnKey();
     }
 
-    public float speedMultiplier = 0.5f;
-    public float rotationMultiplier = 5f;
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(transform.localPosition);
+
+        if (agentKey != null)
+        {
+            sensor.AddObservation(agentKey.transform.localPosition);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero);
+        }
+    }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        // Acties, size = 2
-        //Vector3 controlSignal = Vector3.zero;
-        //controlSignal.z = actionBuffers.ContinuousActions[0];
+        Vector3 move = new Vector3(actionBuffers.ContinuousActions[0], 0, actionBuffers.ContinuousActions[1]);
+        transform.Translate(move * speedMultiplier);
 
-        //transform.Translate(controlSignal * speedMultiplier);
-
-        //transform.Rotate(0.0f, rotationMultiplier * actionBuffers.ContinuousActions[1], 0.0f);
-        Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = actionBuffers.ContinuousActions[0];
-        controlSignal.z = actionBuffers.ContinuousActions[1];
-        transform.Translate(controlSignal * speedMultiplier);
-
-        // Beloningen
-        float distanceToTarget = Vector3.Distance(this.transform.localPosition, AgentKey.transform.localPosition);
-
-        // target bereikt
-        if (distanceToTarget < 1.42f)
+        // Val check
+        if (transform.localPosition.y < -1f)
         {
-            SetReward(1.0f);
-            EndEpisode();
-        }
-        // Van het platform. gevallen?
-        else if (this.transform.localPosition.y < 0)
-        {
+            keySpawnerScript.DestroyKey();
+            agentKey = null;
             EndEpisode();
         }
     }
+
+    // Nieuw: Trigger check om sleutel te pakken
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == agentKey)
+        {
+            SetReward(1.0f);
+
+            keySpawnerScript.DestroyKey();
+            agentKey = null;
+
+            // Spawn nieuwe sleutel na korte delay
+            StartCoroutine(RespawnKeyAfterPickup());
+        }
+    }
+
+    private IEnumerator RespawnKeyAfterPickup()
+    {
+        yield return new WaitForSeconds(0.2f);
+        agentKey = keySpawnerScript.SpawnKey();
+    }
+
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var continuousActionsOut = actionsOut.ContinuousActions;
-        continuousActionsOut[0] = Input.GetAxis("Vertical");
-        continuousActionsOut[1] = Input.GetAxis("Horizontal");
+        continuousActionsOut[0] = Input.GetAxis("Horizontal");
+        continuousActionsOut[1] = Input.GetAxis("Vertical");
     }
 }

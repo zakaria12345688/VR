@@ -8,6 +8,8 @@ TagManager:
   - Anchor
   - agentDoor
   - agent
+  - playerKey
+  - playerDoor
   layers:
   - Default
   - TransparentFX

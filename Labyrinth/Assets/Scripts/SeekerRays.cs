@@ -21,6 +21,8 @@ public class SeekerRays : Agent
     [Header("Movement")]
     public float speedMultiplier = 0.5f;
     public float rotationSpeed = 100f;
+    public float forceMultiplier = 50f;
+    public Rigidbody agentRigid;
     [Header("Training")]
     public float keyCollectionReward = 1.0f;
     public float doorReachReward = 1.0f;
@@ -65,11 +67,13 @@ public class SeekerRays : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         AddReward(durationPunishment);
-        Vector3 move = new Vector3(actionBuffers.ContinuousActions[0], 0, actionBuffers.ContinuousActions[1]);
-        transform.Translate(move * speedMultiplier);
+        float moveForwardInput = actionBuffers.ContinuousActions[1];
+        float moveSidewaysInput = actionBuffers.ContinuousActions[0];
+        Vector3 move = (transform.forward * moveForwardInput) + (transform.right * moveSidewaysInput);
+        agentRigid.AddForce(move.normalized * forceMultiplier, ForceMode.Force);
 
         float rotateAction = actionBuffers.ContinuousActions[2];
-        transform.Rotate(Vector3.up, rotateAction * rotationSpeed * Time.deltaTime); // Time.deltaTime zorgt ervoor dat rotation snelheid onafhankelijk is van framerate
+        agentRigid.angularVelocity = Vector3.up * rotateAction * rotationSpeed;
 
         // Val check
         if (transform.localPosition.y < -1f)

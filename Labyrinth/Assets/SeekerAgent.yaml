@@ -2,8 +2,8 @@ behaviors:
   SeekerAgent:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 128
-      buffer_size: 1024
+      batch_size: 2048
+      buffer_size: 40960
       learning_rate: 5.0e-4
       beta: 1.0e-2
       epsilon: 0.2
@@ -28,7 +28,7 @@ behaviors:
     keep_checkpoints: 500
     max_steps: 20000000
     time_horizon: 128
-    summary_freq: 20000
+    summary_freq: 40960
     threaded: true
   SeekerRays:
     trainer_type: ppo

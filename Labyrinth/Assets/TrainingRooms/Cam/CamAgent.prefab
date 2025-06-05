@@ -433,6 +433,8 @@ MonoBehaviour:
   startZ: 0
   speedMultiplier: 0.5
   rotationSpeed: 100
+  forceMultiplier: 25
+  agentRigid: {fileID: 0}
   keyCollectionReward: 1
   doorReachReward: 1
   fallPunishment: -1
@@ -464,7 +466,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4423241293033825307}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cbf40eb8cad5c514bb830f26b6d2365e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -485,7 +487,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4423241293033825307}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cbf40eb8cad5c514bb830f26b6d2365e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

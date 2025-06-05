@@ -46,9 +46,17 @@ PrefabInstance:
       value: 40000
       objectReference: {fileID: 0}
     - target: {fileID: 2174580967812054156, guid: 9b6b06a5f7f88134fbab01bb73bde755, type: 3}
+      propertyPath: agentRigid
+      value: 
+      objectReference: {fileID: 5302262725609198236}
+    - target: {fileID: 2174580967812054156, guid: 9b6b06a5f7f88134fbab01bb73bde755, type: 3}
       propertyPath: agentTargetDoor
       value: 
       objectReference: {fileID: 5106880513602979583}
+    - target: {fileID: 2174580967812054156, guid: 9b6b06a5f7f88134fbab01bb73bde755, type: 3}
+      propertyPath: forceMultiplier
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2174580967812054156, guid: 9b6b06a5f7f88134fbab01bb73bde755, type: 3}
       propertyPath: keySpawnerScript
       value: 
@@ -102,6 +110,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b6b06a5f7f88134fbab01bb73bde755, type: 3}
+--- !u!54 &5302262725609198236 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6333929102502689596, guid: 9b6b06a5f7f88134fbab01bb73bde755, type: 3}
+  m_PrefabInstance: {fileID: 2194318646935120288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5304125265590501997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6336495395357010893, guid: 9b6b06a5f7f88134fbab01bb73bde755, type: 3}

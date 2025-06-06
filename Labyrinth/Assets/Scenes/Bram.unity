@@ -135,6 +135,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 0
       objectReference: {fileID: 0}
@@ -142,6 +146,10 @@ PrefabInstance:
       propertyPath: forceMultiplier
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2732686910284919689, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: keySpawnerScript
+      value: 
+      objectReference: {fileID: 236335582}
     - target: {fileID: 2750018343919116871, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_Name
       value: RoomCombo1_CAM
@@ -187,6 +195,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BackGroundColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -207,6 +219,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+--- !u!114 &236335582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7057187139757068227, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+  m_PrefabInstance: {fileID: 236335581}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e1572deb2cda845a533bcad0656cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &716551457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,6 +243,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 0
       objectReference: {fileID: 0}
@@ -227,6 +254,10 @@ PrefabInstance:
       propertyPath: forceMultiplier
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2732686910284919689, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: keySpawnerScript
+      value: 
+      objectReference: {fileID: 716551458}
     - target: {fileID: 2750018343919116871, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_Name
       value: RoomCombo1_CAM (2)
@@ -272,6 +303,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BackGroundColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -292,6 +327,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+--- !u!114 &716551458 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7057187139757068227, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+  m_PrefabInstance: {fileID: 716551457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e1572deb2cda845a533bcad0656cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1503087690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,6 +351,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 0
       objectReference: {fileID: 0}
@@ -312,6 +362,10 @@ PrefabInstance:
       propertyPath: forceMultiplier
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2732686910284919689, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: keySpawnerScript
+      value: 
+      objectReference: {fileID: 1503087691}
     - target: {fileID: 2750018343919116871, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_Name
       value: RoomCombo1_CAM (1)
@@ -357,6 +411,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BackGroundColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -377,6 +435,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+--- !u!114 &1503087691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7057187139757068227, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+  m_PrefabInstance: {fileID: 1503087690}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e1572deb2cda845a533bcad0656cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1901748756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -390,6 +459,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729622339668018286, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 0
       objectReference: {fileID: 0}
@@ -397,6 +470,10 @@ PrefabInstance:
       propertyPath: forceMultiplier
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2732686910284919689, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: keySpawnerScript
+      value: 
+      objectReference: {fileID: 1901748757}
     - target: {fileID: 2750018343919116871, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_Name
       value: RoomCombo1_CAM (3)
@@ -442,6 +519,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117876340975139203, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
       propertyPath: m_BackGroundColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -462,6 +543,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+--- !u!114 &1901748757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7057187139757068227, guid: 310cf9b7b695ba54eb94e3149b8dcbc8, type: 3}
+  m_PrefabInstance: {fileID: 1901748756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e1572deb2cda845a533bcad0656cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2058223110
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +742,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143980198}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2143980201
 Camera:
   m_ObjectHideFlags: 0
@@ -661,7 +753,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

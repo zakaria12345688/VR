@@ -4,7 +4,7 @@ behaviors:
     hyperparameters:
       batch_size: 2048
       buffer_size: 40960
-      learning_rate: 5.0e-4
+      learning_rate: 1.0e-4
       beta: 1.0e-2
       epsilon: 0.2
       lambd: 0.95
@@ -16,18 +16,24 @@ behaviors:
       normalize: false
       hidden_units: 256
       num_layers: 2
-      vis_encode_type: simple
+      vis_encode_type: resnet
+      vision_encoder:
+        num_stacked_frames: 1 # Or more if motion is important
+        conv_filters: 32
+        num_layers: 3
+        kernel_size: 5
+        strides: [2, 2, 2]
     reward_signals:
       extrinsic:
         gamma: 0.99
         strength: 1.0
       curiosity:
         gamma: 0.99
-        strength: 0.20
+        strength: 0.05
         encoding_size: 256
     keep_checkpoints: 500
     max_steps: 20000000
-    time_horizon: 128
+    time_horizon: 512
     summary_freq: 40960
     threaded: true
   SeekerRays:

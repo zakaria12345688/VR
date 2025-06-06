@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1749218106",
+        "python_version": "3.9.21 (main, Dec 11 2024, 16:35:24) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\Gert Van Goethem\\.conda\\envs\\MLDev\\Scripts\\mlagents-learn SeekerAgent.yaml --run-id=BramCam_00_7 --force",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.6.0+cu118",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1749218116"
+    },
+    "total": 10.2492257,
+    "count": 1,
+    "self": 0.019924899999999468,
+    "children": {
+        "run_training.setup": {
+            "total": 0.1750456000000007,
+            "count": 1,
+            "self": 0.1750456000000007
+        },
+        "TrainerController.start_learning": {
+            "total": 10.0542552,
+            "count": 1,
+            "self": 0.0006263999999980285,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 10.053615,
+                    "count": 1,
+                    "self": 10.053615
+                },
+                "trainer_threads": {
+                    "total": 1.300000000981072e-06,
+                    "count": 1,
+                    "self": 1.300000000981072e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 1.2500000000414957e-05,
+                    "count": 1,
+                    "self": 1.2500000000414957e-05
+                }
+            }
+        }
+    }
+}

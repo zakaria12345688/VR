@@ -1,0 +1,65 @@
+{
+    "SeekerAgent": {
+        "checkpoints": [
+            {
+                "steps": 164440,
+                "file_path": "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-164440.onnx",
+                "reward": null,
+                "creation_time": 1749252590.7740588,
+                "auxillary_file_paths": [
+                    "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-164440.pt"
+                ]
+            },
+            {
+                "steps": 198521,
+                "file_path": "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-198521.onnx",
+                "reward": 0.4504480409314451,
+                "creation_time": 1749254998.6954591,
+                "auxillary_file_paths": [
+                    "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-198521.pt"
+                ]
+            },
+            {
+                "steps": 499530,
+                "file_path": "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-499530.onnx",
+                "reward": -0.03997875563800335,
+                "creation_time": 1749266545.1832595,
+                "auxillary_file_paths": [
+                    "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-499530.pt"
+                ]
+            },
+            {
+                "steps": 999576,
+                "file_path": "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-999576.onnx",
+                "reward": 0.4732756274752319,
+                "creation_time": 1749285839.2749557,
+                "auxillary_file_paths": [
+                    "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-999576.pt"
+                ]
+            },
+            {
+                "steps": 1019306,
+                "file_path": "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-1019306.onnx",
+                "reward": 0.4699899856932461,
+                "creation_time": 1749286735.3827069,
+                "auxillary_file_paths": [
+                    "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-1019306.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1019306,
+            "file_path": "results\\BramCamComplicated_p01\\SeekerAgent.onnx",
+            "reward": 0.4699899856932461,
+            "creation_time": 1749286735.3827069,
+            "auxillary_file_paths": [
+                "results\\BramCamComplicated_p01\\SeekerAgent\\SeekerAgent-1019306.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.6.0+cu118"
+    }
+}

@@ -47,6 +47,7 @@ public class KeySpawner : MonoBehaviour
     {
         if (keyInstance != null)
         {
+            Debug.Log("Destroying key instance");
             Destroy(keyInstance);
             keyInstance = null;
         }

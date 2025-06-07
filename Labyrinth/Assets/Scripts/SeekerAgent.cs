@@ -19,10 +19,13 @@ public class SeekerAgent : Agent
     [Header("Movement")]
     public float speedMultiplier = 0.5f;
     public float rotationSpeed = 100f;
+    public float forceMultiplier = 50f;
+    public Rigidbody agentRigid;
     [Header("Training")]
     public float keyCollectionReward = 1.0f;
     public float doorReachReward = 1.0f;
     public float fallPunishment = -1.0f;
+    public float durationPunishment = -0.001f;
 
     public override void OnEpisodeBegin()
     {
@@ -31,10 +34,10 @@ public class SeekerAgent : Agent
 
         // Verwijder oude sleutel
         keySpawnerScript.DestroyKey();
-        agentKey = null;
+        // agentKey = null;
 
         // Spawn nieuwe sleutel
-        agentKey = keySpawnerScript.SpawnKey();
+        agentKey = keySpawnerScript.SpawnKey(true);
 
         // Reset keyCollected
         keyCollected = false;
@@ -51,7 +54,7 @@ public class SeekerAgent : Agent
         // Volgende lijnen zorgen dat agent exacte coördinaten van agentKey weet, maar we gebruiken liever een camera sensor
         /*if (agentKey != null)
         {
-            sensor.AddObservation(agentKey.transform.localPosition);
+        sensor.AddObservation(agentKey.transform.localPosition);
         }
         else
         {
@@ -61,11 +64,14 @@ public class SeekerAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        Vector3 move = new Vector3(actionBuffers.ContinuousActions[0], 0, actionBuffers.ContinuousActions[1]);
-        transform.Translate(move * speedMultiplier);
+        AddReward(durationPunishment);
+        float moveForwardInput = actionBuffers.ContinuousActions[1];
+        float moveSidewaysInput = actionBuffers.ContinuousActions[0];
+        Vector3 move = (transform.forward * moveForwardInput) + (transform.right * moveSidewaysInput);
+        agentRigid.AddForce(move.normalized * forceMultiplier, ForceMode.Force);
 
         float rotateAction = actionBuffers.ContinuousActions[2];
-        transform.Rotate(Vector3.up, rotateAction * rotationSpeed * Time.deltaTime); // Time.deltaTime zorgt ervoor dat rotation snelheid onafhankelijk is van framerate
+        agentRigid.angularVelocity = Vector3.up * rotateAction * rotationSpeed;
 
         // Val check
         if (transform.localPosition.y < -1f)
@@ -73,7 +79,7 @@ public class SeekerAgent : Agent
             Debug.Log("Fallen");
             keySpawnerScript.DestroyKey();
             AddReward(fallPunishment);
-            agentKey = null;
+            // agentKey = null;
             Debug.Log(GetCumulativeReward());
             EndEpisode();
         }
@@ -97,7 +103,8 @@ public class SeekerAgent : Agent
                 Debug.Log("Key collected, door system enabled, continuing episode.");
                 keyCollected = true;
             }
-            agentKey = null;
+            keyCollected = true;
+            // agentKey = null;
             // volgende 2 lijnen: denk dat dit heel raar gaat doen bij trainen
             // Spawn nieuwe sleutel na korte delay
             // StartCoroutine(RespawnKeyAfterPickup());
@@ -131,14 +138,4 @@ public class SeekerAgent : Agent
         }
         continuousActionsOut[2] = rotateInput;
     }
-    /*
-    if (Input.GetKey(KeyCode.Q))
-    {
-        rotateInput = -1f; // Rotate Left
-    }
-    else if (Input.GetKey(KeyCode.E))
-    {
-        rotateInput = 1f;  // Rotate Right
-    }
-    continuousActionsOut[2] = rotateInput;*/
 }

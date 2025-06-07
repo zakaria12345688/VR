@@ -1,0 +1,68 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1749049712",
+        "python_version": "3.9.21 (main, Dec 11 2024, 16:35:24) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\Gert Van Goethem\\.conda\\envs\\MLDev\\Scripts\\mlagents-learn SeekerAgent.yaml --run-id=BramSeeker_11 --initialize-from=BramSeeker_08",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.6.0+cu118",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1749049811"
+    },
+    "total": 98.5262665,
+    "count": 1,
+    "self": 0.007372900000007121,
+    "children": {
+        "run_training.setup": {
+            "total": 0.14155549999999995,
+            "count": 1,
+            "self": 0.14155549999999995
+        },
+        "TrainerController.start_learning": {
+            "total": 98.3773381,
+            "count": 1,
+            "self": 0.00025159999998436433,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 26.6413981,
+                    "count": 1,
+                    "self": 26.6413981
+                },
+                "TrainerController.advance": {
+                    "total": 71.22580880000001,
+                    "count": 1,
+                    "self": 1.850000001013541e-05,
+                    "children": {
+                        "env_step": {
+                            "total": 71.2257903,
+                            "count": 1,
+                            "self": 71.2257791,
+                            "children": {
+                                "SubprocessEnvManager._take_step": {
+                                    "total": 1.1199999999433885e-05,
+                                    "count": 1,
+                                    "self": 1.1199999999433885e-05
+                                }
+                            }
+                        }
+                    }
+                },
+                "TrainerController._save_models": {
+                    "total": 0.509879600000005,
+                    "count": 1,
+                    "self": 0.0031914000000057285,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.5066881999999993,
+                            "count": 1,
+                            "self": 0.5066881999999993
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

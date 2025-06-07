@@ -1,0 +1,47 @@
+{
+    "SeekerAgent": {
+        "checkpoints": [
+            {
+                "steps": 499984,
+                "file_path": "results\\BramSeeker_07\\SeekerAgent\\SeekerAgent-499984.onnx",
+                "reward": 0.9705882352941176,
+                "creation_time": 1749018146.1981401,
+                "auxillary_file_paths": [
+                    "results\\BramSeeker_07\\SeekerAgent\\SeekerAgent-499984.pt"
+                ]
+            },
+            {
+                "steps": 999936,
+                "file_path": "results\\BramSeeker_07\\SeekerAgent\\SeekerAgent-999936.onnx",
+                "reward": 1.0434782608695652,
+                "creation_time": 1749031592.452109,
+                "auxillary_file_paths": [
+                    "results\\BramSeeker_07\\SeekerAgent\\SeekerAgent-999936.pt"
+                ]
+            },
+            {
+                "steps": 1186343,
+                "file_path": "results\\BramSeeker_07\\SeekerAgent\\SeekerAgent-1186343.onnx",
+                "reward": 0.625,
+                "creation_time": 1749037010.7407558,
+                "auxillary_file_paths": [
+                    "results\\BramSeeker_07\\SeekerAgent\\SeekerAgent-1186343.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1186343,
+            "file_path": "results\\BramSeeker_07\\SeekerAgent.onnx",
+            "reward": 0.625,
+            "creation_time": 1749037010.7407558,
+            "auxillary_file_paths": [
+                "results\\BramSeeker_07\\SeekerAgent\\SeekerAgent-1186343.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.6.0+cu118"
+    }
+}

@@ -49,11 +49,27 @@ public class SeekerGod : Agent
         // override functie sowieso nodig, maar mag leeg zijn aangezien we met camerasensor werken (zie componenenten op agent object)
         // Indien enkel camera sensor, zet space size op 0 in inspector.
 
-        // Probeer eerst zonder dat agent zijn exacte coördinaten weet, als dat niet werkt, uncomment de volgende lijn
+        // Probeer eerst zonder dat agent zijn exacte coï¿½rdinaten weet, als dat niet werkt, uncomment de volgende lijn
         sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(agentKey.transform.localPosition);
 
-        // Volgende lijnen zorgen dat agent exacte coördinaten van agentKey weet, maar we gebruiken liever een camera sensor
+        if (agentKey != null)
+        {
+            sensor.AddObservation(agentKey.transform.localPosition);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero); // Als er geen key is, voeg een nulvector toe
+        }
+        if (agentTargetDoor != null)
+        {
+            sensor.AddObservation(agentTargetDoor.transform.localPosition);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero); // Als er geen deur is, voeg een nulvector toe
+        }
+
+        // Volgende lijnen zorgen dat agent exacte coï¿½rdinaten van agentKey weet, maar we gebruiken liever een camera sensor
         /*if (agentKey != null)
         {
         sensor.AddObservation(agentKey.transform.localPosition);

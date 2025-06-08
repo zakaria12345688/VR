@@ -33,7 +33,7 @@ public class SeekerAgent : Agent
         this.transform.localPosition = new Vector3(startX, startY, startZ);
 
         // Verwijder oude sleutel
-        keySpawnerScript.DestroyKey();
+        keySpawnerScript.DestroyKey(agentKey, true);
         // agentKey = null;
 
         // Spawn nieuwe sleutel
@@ -48,10 +48,10 @@ public class SeekerAgent : Agent
         // override functie sowieso nodig, maar mag leeg zijn aangezien we met camerasensor werken (zie componenenten op agent object)
         // Indien enkel camera sensor, zet space size op 0 in inspector.
 
-        // Probeer eerst zonder dat agent zijn exacte coördinaten weet, als dat niet werkt, uncomment de volgende lijn
+        // Probeer eerst zonder dat agent zijn exacte coï¿½rdinaten weet, als dat niet werkt, uncomment de volgende lijn
         //sensor.AddObservation(transform.localPosition);
 
-        // Volgende lijnen zorgen dat agent exacte coördinaten van agentKey weet, maar we gebruiken liever een camera sensor
+        // Volgende lijnen zorgen dat agent exacte coï¿½rdinaten van agentKey weet, maar we gebruiken liever een camera sensor
         /*if (agentKey != null)
         {
         sensor.AddObservation(agentKey.transform.localPosition);
@@ -77,7 +77,7 @@ public class SeekerAgent : Agent
         if (transform.localPosition.y < -1f)
         {
             Debug.Log("Fallen");
-            keySpawnerScript.DestroyKey();
+            keySpawnerScript.DestroyKey(agentKey, true);
             AddReward(fallPunishment);
             // agentKey = null;
             Debug.Log(GetCumulativeReward());
@@ -92,7 +92,7 @@ public class SeekerAgent : Agent
         if (other.gameObject.CompareTag("agentKey")) // check of het de juiste key is m.b.v. tag
         {
             AddReward(keyCollectionReward);
-            keySpawnerScript.DestroyKey();
+            keySpawnerScript.DestroyKey(agentKey, true);
             if (enableDoorSystem is false) // voor trainen zonder deur (eerste trainingen)
             {
                 Debug.Log("Key collected, door system disabled, ending episode.");
@@ -132,7 +132,8 @@ public class SeekerAgent : Agent
         if (Input.GetKey(KeyCode.Q))
         {
             rotateInput = -1f; // Rotate Left
-        } else if (Input.GetKey(KeyCode.E))
+        }
+        else if (Input.GetKey(KeyCode.E))
         {
             rotateInput = 1f; // Rotate Right
         }

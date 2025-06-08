@@ -6,6 +6,8 @@ public class KeySpawner : MonoBehaviour
     public GameObject agentKeyPrefab;
     public GameObject playerKeyPrefab;
     private GameObject keyInstance;
+    private GameObject playerKey; //new
+    private GameObject agentKey; //new
     private GameObject lastUsedSpawnPoint;
     private GameObject keyPrefab;
     public List<GameObject> availableKeySpawnPoints = new List<GameObject>();
@@ -24,13 +26,17 @@ public class KeySpawner : MonoBehaviour
         {
             Debug.Log("agentKey spawning");
             keyPrefab = agentKeyPrefab;
+            keyInstance = Instantiate(keyPrefab, spawnPosition, Quaternion.identity);//new
+            agentKey = keyInstance;//new
         }
         else
         {
             Debug.Log("playerKey spawning");
             keyPrefab = playerKeyPrefab;
+            keyInstance = Instantiate(keyPrefab, spawnPosition, Quaternion.identity);//new
+            playerKey = keyInstance;//new
         }
-        keyInstance = Instantiate(keyPrefab, spawnPosition, Quaternion.identity);
+        //remove: keyInstance = Instantiate(keyPrefab, spawnPosition, Quaternion.identity);
         //availableKeySpawnPoints.RemoveAt(randomIndex);
         // Zorg dat de sleutel niet zweeft of valt
         Rigidbody rb = keyInstance.GetComponent<Rigidbody>();
@@ -43,13 +49,20 @@ public class KeySpawner : MonoBehaviour
         return keyInstance;
     }
 
-    public void DestroyKey()
+    public void DestroyKey(GameObject gameObject, bool agent)
     {
-        if (keyInstance != null)
-        {
-            Debug.Log("Destroying key instance");
-            Destroy(keyInstance);
-            keyInstance = null;
-        }
+        if (agent) //new
+        { //new
+            Destroy(gameObject); //new
+            gameObject = null; //new
+            keyInstance = null; //new
+        } //new
+        else //new
+        { //new
+            Destroy(gameObject); //new
+            gameObject = null; //new
+            keyInstance = null; //new
+        } //new
+        // remove other if
     }
 }

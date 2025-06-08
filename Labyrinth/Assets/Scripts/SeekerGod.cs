@@ -14,6 +14,7 @@ public class SeekerGod : Agent
     private GameObject agentKey;
     private bool keyCollected = false; // later in code nodig
 
+    private GameObject playerKey;
     public float startX = 0.0f;
     public float startY = 0.1f;
     public float startZ = 0.0f;
@@ -34,11 +35,13 @@ public class SeekerGod : Agent
         this.transform.localPosition = new Vector3(startX, startY, startZ);
 
         // Verwijder oude sleutel
-        keySpawnerScript.DestroyKey();
+        keySpawnerScript.DestroyKey(agentKey, true);
+
         // agentKey = null;
 
         // Spawn nieuwe sleutel
         agentKey = keySpawnerScript.SpawnKey(true);
+        playerKey = keySpawnerScript.SpawnKey(false);
 
         // Reset keyCollected
         keyCollected = false;
@@ -80,6 +83,14 @@ public class SeekerGod : Agent
         }*/
     }
 
+    public void PlayerEndEpisode()
+    {
+        keySpawnerScript.DestroyKey(playerKey, false);
+        keySpawnerScript.DestroyKey(agentKey, true);
+        EndEpisode();
+
+    }
+
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         AddReward(durationPunishment);
@@ -95,7 +106,8 @@ public class SeekerGod : Agent
         if (transform.localPosition.y < -1f)
         {
             Debug.Log("Fallen");
-            keySpawnerScript.DestroyKey();
+            keySpawnerScript.DestroyKey(agentKey, true);
+            keySpawnerScript.DestroyKey(playerKey, false);
             AddReward(fallPunishment);
             // agentKey = null;
             Debug.Log(GetCumulativeReward());
@@ -110,7 +122,7 @@ public class SeekerGod : Agent
         if (other.gameObject.CompareTag("agentKey")) // check of het de juiste key is m.b.v. tag
         {
             AddReward(keyCollectionReward);
-            keySpawnerScript.DestroyKey();
+            keySpawnerScript.DestroyKey(agentKey, true);
             if (enableDoorSystem is false) // voor trainen zonder deur (eerste trainingen)
             {
                 Debug.Log("Key collected, door system disabled, ending episode.");

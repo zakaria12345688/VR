@@ -1,57 +1,59 @@
+using Unity.MLAgents;
 using UnityEngine;
 
 public class PlayerFinish : MonoBehaviour
 {
     [Header("Environment")]
-    public GameObject PlayerDoor;
-    public KeySpawner keySpawnerScript;
-    public GameObject Player; // Player object
+    public GameObject PlayerDoor; // Deur GameObject
+    public KeySpawner keySpawnerScript; // Verwijzing naar KeySpawner script
+    public GameObject Player; // Speler GameObject
 
     [Header("Instellingen")]
-    public bool enableDoorSystem = true;
+    public bool enableDoorSystem = true; // Schakelt het deursysteem in/uit
 
+    private Vector3 startPosition; // Startpositie van de speler
+    private GameObject playerKey; // Huidige sleutel
 
-    private Vector3 startPosition;       // Startpositie speler
-    private GameObject playerKey;          // Huidige sleutel
-    private bool keyCollected = false;     // Heeft speler sleutel
+    public SeekerGod GodAgent;
 
-    private void Start()
-    {
-        if (Player == null)
-        {
-            Debug.LogError("Player niet ingesteld in PlayerFinish script!");
-            return;
-        }
+    private bool keyCollected = false; // later in code nodig
 
+    public float startX = 0.0f;
+    public float startY = 0.1f;
+    public float startZ = 0.0f;
 
-        // Spawn een nieuwe sleutel voor de speler
-        playerKey = keySpawnerScript.SpawnKey(false);
-        Debug.Log($"Sleutel gespawned: {playerKey}");
-    }
 
     private void OnTriggerEnter(Collider other)
     {
+        // Controleer of het deursysteem actief is
         if (!enableDoorSystem) return;
 
+        // Controleer of de sleutel de trigger raakt
         if (other.CompareTag("playerKey"))
         {
             Debug.Log("Sleutel raakt deur");
-            Player.transform.position = new Vector3(0f, 0.34f, 0f);
 
-            // Optioneel: reset rotatie speler ook, als nodig
-            // Player.transform.rotation = Quaternion.identity;
+            // Verplaats speler naar startpositie
+            Player.transform.position = startPosition;
+            Debug.Log($"Speler verplaatst naar startpositie: {startPosition}");
 
-            // Verwijder oude sleutel
-            keySpawnerScript.DestroyKey();
+            GodAgent.PlayerEndEpisode();
 
-            // Spawn nieuwe sleutel
-            playerKey = keySpawnerScript.SpawnKey(false);
+            // Vernietig de oude sleutel
+            // keySpawnerScript.DestroyKey();
+            // Debug.Log("Oude sleutel vernietigd");
 
-            // Reset flag
-            keyCollected = false;
+            // Spawn een nieuwe sleutel
 
+            /*playerKey = keySpawnerScript.SpawnKey(false);
+            if (playerKey != null)
+            {
+                Debug.Log($"Nieuwe sleutel gespaund: {playerKey.name}");
+            }
+            else
+            {
+                Debug.LogError("Kon geen nieuwe sleutel spawnen!");
+            }*/
         }
-
-
     }
 }

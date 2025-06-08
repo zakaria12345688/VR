@@ -13,6 +13,7 @@ public class SeekerRays : Agent
     public GameObject agentTargetDoor; // Leeglaten mag, als enableDoorSystem false blijft
     public bool enableDoorSystem = false; // false: trainen zonder deur
     private GameObject agentKey;
+    private GameObject playerKey;
     private bool keyCollected = false; // later in code nodig
 
     public float startX = 0.0f;
@@ -35,7 +36,7 @@ public class SeekerRays : Agent
         this.transform.localPosition = new Vector3(startX, startY, startZ);
 
         // Verwijder oude sleutel
-        keySpawnerScript.DestroyKey();
+        keySpawnerScript.DestroyKey(agentKey, true);
         // agentKey = null;
 
         // Spawn nieuwe sleutel
@@ -50,10 +51,10 @@ public class SeekerRays : Agent
         // override functie sowieso nodig, maar mag leeg zijn aangezien we met camerasensor werken (zie componenenten op agent object)
         // Indien enkel camera sensor, zet space size op 0 in inspector.
 
-        // Probeer eerst zonder dat agent zijn exacte coördinaten weet, als dat niet werkt, uncomment de volgende lijn
+        // Probeer eerst zonder dat agent zijn exacte coï¿½rdinaten weet, als dat niet werkt, uncomment de volgende lijn
         //sensor.AddObservation(transform.localPosition);
-        
-        // Volgende lijnen zorgen dat agent exacte coördinaten van agentKey weet, maar we gebruiken liever een camera sensor
+
+        // Volgende lijnen zorgen dat agent exacte coï¿½rdinaten van agentKey weet, maar we gebruiken liever een camera sensor
         /*if (agentKey != null)
         {
         sensor.AddObservation(agentKey.transform.localPosition);
@@ -79,7 +80,8 @@ public class SeekerRays : Agent
         if (transform.localPosition.y < -1f)
         {
             Debug.Log("Fallen");
-            keySpawnerScript.DestroyKey();
+            keySpawnerScript.DestroyKey(agentKey, true);
+            keySpawnerScript.DestroyKey(playerKey, false);
             AddReward(fallPunishment);
             // agentKey = null;
             Debug.Log(GetCumulativeReward());
@@ -94,7 +96,7 @@ public class SeekerRays : Agent
         if (other.gameObject.CompareTag("agentKey")) // check of het de juiste key is m.b.v. tag
         {
             AddReward(keyCollectionReward);
-            keySpawnerScript.DestroyKey();
+            keySpawnerScript.DestroyKey(agentKey, true);
             if (enableDoorSystem is false) // voor trainen zonder deur (eerste trainingen)
             {
                 Debug.Log("Key collected, door system disabled, ending episode.");

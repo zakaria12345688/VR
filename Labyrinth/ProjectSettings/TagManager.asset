@@ -10,6 +10,7 @@ TagManager:
   - agent
   - playerKey
   - playerDoor
+  - Floor
   layers:
   - Default
   - TransparentFX

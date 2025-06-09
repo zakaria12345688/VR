@@ -162,6 +162,7 @@ public class SeekerRays : Agent
             if (keyCollected)
             {
                 AddReward(doorReachReward);
+                ScoreManager.Instance.AddAgentScore(1);
                 Debug.Log("Door reached, ending episode.");
                 EndEpisode();
             }

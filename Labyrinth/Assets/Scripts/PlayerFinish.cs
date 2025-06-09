@@ -32,7 +32,7 @@ public class PlayerFinish : MonoBehaviour
         if (other.CompareTag("playerKey"))
         {
             Debug.Log("Sleutel raakt deur");
-
+            ScoreManager.Instance.AddPlayerScore(1);
             // Verplaats speler naar startpositie
             // Player.transform.position = startPosition;
             Debug.Log($"Speler verplaatst naar startpositie: {startPosition}");

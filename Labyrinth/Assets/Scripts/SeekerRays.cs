@@ -37,10 +37,12 @@ public class SeekerRays : Agent
 
         // Verwijder oude sleutel
         keySpawnerScript.DestroyKey(agentKey, true);
+        keySpawnerScript.DestroyKey(playerKey, false);
         // agentKey = null;
 
         // Spawn nieuwe sleutel
         agentKey = keySpawnerScript.SpawnKey(true);
+        playerKey = keySpawnerScript.SpawnKey(false);
 
         // Reset keyCollected
         keyCollected = false;
@@ -51,10 +53,28 @@ public class SeekerRays : Agent
         // override functie sowieso nodig, maar mag leeg zijn aangezien we met camerasensor werken (zie componenenten op agent object)
         // Indien enkel camera sensor, zet space size op 0 in inspector.
 
-        // Probeer eerst zonder dat agent zijn exacte co�rdinaten weet, als dat niet werkt, uncomment de volgende lijn
+        // Probeer eerst zonder dat agent zijn exacte co rdinaten weet, als dat niet werkt, uncomment de volgende lijn
         //sensor.AddObservation(transform.localPosition);
+        sensor.AddObservation(transform.localPosition);
 
-        // Volgende lijnen zorgen dat agent exacte co�rdinaten van agentKey weet, maar we gebruiken liever een camera sensor
+        if (agentKey != null)
+        {
+            sensor.AddObservation(agentKey.transform.localPosition);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero); // Als er geen key is, voeg een nulvector toe
+        }
+        if (agentTargetDoor != null)
+        {
+            sensor.AddObservation(agentTargetDoor.transform.localPosition);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero); // Als er geen deur is, voeg een nulvector toe
+        }
+
+        // Volgende lijnen zorgen dat agent exacte co rdinaten van agentKey weet, maar we gebruiken liever een camera sensor
         /*if (agentKey != null)
         {
         sensor.AddObservation(agentKey.transform.localPosition);
@@ -63,6 +83,14 @@ public class SeekerRays : Agent
         {
             sensor.AddObservation(Vector3.zero);
         }*/
+    }
+
+    public void PlayerEndEpisode()
+    {
+        keySpawnerScript.DestroyKey(playerKey, false);
+        keySpawnerScript.DestroyKey(agentKey, true);
+        EndEpisode();
+
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -107,17 +135,40 @@ public class SeekerRays : Agent
                 Debug.Log("Key collected, door system enabled, continuing episode.");
                 keyCollected = true;
             }
-            keyCollected = true;
+
             // agentKey = null;
             // volgende 2 lijnen: denk dat dit heel raar gaat doen bij trainen
             // Spawn nieuwe sleutel na korte delay
             // StartCoroutine(RespawnKeyAfterPickup());
         }
-        if (other.gameObject.CompareTag("agentDoor") && keyCollected is true)
+
+        // Straf op basis van afstand tot key of deur
+        if (!keyCollected && agentKey != null)
         {
-            AddReward(doorReachReward);
-            Debug.Log("Door reached, ending episode.");
-            EndEpisode();
+            float distanceToKey = Vector3.Distance(transform.localPosition, agentKey.transform.localPosition);
+            AddReward(-0.001f * distanceToKey);
+        }
+        else if (keyCollected && enableDoorSystem && agentTargetDoor != null)
+        {
+            float distanceToDoor = Vector3.Distance(transform.localPosition, agentTargetDoor.transform.localPosition);
+            AddReward(-0.001f * distanceToDoor);
+        }
+
+
+        if (other.gameObject.CompareTag("agentDoor"))
+        {
+            if (keyCollected)
+            {
+                AddReward(doorReachReward);
+                Debug.Log("Door reached, ending episode.");
+                EndEpisode();
+            }
+            else
+            {
+                // Straf voor de deur aanraken zonder sleutel
+                AddReward(-0.2f);
+                Debug.Log("Hit door without key, applying penalty.");
+            }
         }
     }
     // Volgende methode: wordt nutteloos bij nieuwe versie van script, maar ik laat het staan

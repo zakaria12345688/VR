@@ -83,13 +83,6 @@ public class SeekerGod : Agent
         }*/
     }
 
-    public void PlayerEndEpisode()
-    {
-        keySpawnerScript.DestroyKey(playerKey, false);
-        keySpawnerScript.DestroyKey(agentKey, true);
-        EndEpisode();
-
-    }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {

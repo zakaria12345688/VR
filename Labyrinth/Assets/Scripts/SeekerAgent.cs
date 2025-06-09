@@ -62,6 +62,8 @@ public class SeekerAgent : Agent
         }*/
     }
 
+
+
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         AddReward(durationPunishment);

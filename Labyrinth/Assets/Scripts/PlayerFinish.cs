@@ -14,7 +14,7 @@ public class PlayerFinish : MonoBehaviour
     private Vector3 startPosition; // Startpositie van de speler
     private GameObject playerKey; // Huidige sleutel
 
-    public SeekerGod GodAgent;
+    public SeekerRays Agent;
 
     private bool keyCollected = false; // later in code nodig
 
@@ -37,7 +37,7 @@ public class PlayerFinish : MonoBehaviour
             Player.transform.position = startPosition;
             Debug.Log($"Speler verplaatst naar startpositie: {startPosition}");
 
-            GodAgent.PlayerEndEpisode();
+            Agent.PlayerEndEpisode();
 
             // Vernietig de oude sleutel
             // keySpawnerScript.DestroyKey();

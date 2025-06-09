@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 0
+    VectorObservationSize: 9
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -189,7 +189,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 20000
+  MaxStep: 12000
   keySpawnerScript: {fileID: 0}
   agentTargetDoor: {fileID: 0}
   enableDoorSystem: 0
@@ -198,6 +198,8 @@ MonoBehaviour:
   startZ: 0
   speedMultiplier: 0.5
   rotationSpeed: 100
+  forceMultiplier: 50
+  agentRigid: {fileID: 0}
   keyCollectionReward: 1
   doorReachReward: 1
   fallPunishment: -1

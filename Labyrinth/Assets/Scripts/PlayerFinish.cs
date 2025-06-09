@@ -11,7 +11,7 @@ public class PlayerFinish : MonoBehaviour
     [Header("Instellingen")]
     public bool enableDoorSystem = true; // Schakelt het deursysteem in/uit
 
-    private Vector3 startPosition; // Startpositie van de speler
+    private Vector3 startPosition = new Vector3(1f, 0.5f, 1f); // Startpositie van de speler
     private GameObject playerKey; // Huidige sleutel
 
     public SeekerRays Agent;
@@ -34,7 +34,7 @@ public class PlayerFinish : MonoBehaviour
             Debug.Log("Sleutel raakt deur");
 
             // Verplaats speler naar startpositie
-            Player.transform.position = startPosition;
+            // Player.transform.position = startPosition;
             Debug.Log($"Speler verplaatst naar startpositie: {startPosition}");
 
             Agent.PlayerEndEpisode();

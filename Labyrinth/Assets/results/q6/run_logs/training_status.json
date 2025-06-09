@@ -1,0 +1,56 @@
+{
+    "SeekerRays": {
+        "checkpoints": [
+            {
+                "steps": 499903,
+                "file_path": "results\\q6\\SeekerRays\\SeekerRays-499903.onnx",
+                "reward": 0.20601914178293484,
+                "creation_time": 1749415330.8285766,
+                "auxillary_file_paths": [
+                    "results\\q6\\SeekerRays\\SeekerRays-499903.pt"
+                ]
+            },
+            {
+                "steps": 999894,
+                "file_path": "results\\q6\\SeekerRays\\SeekerRays-999894.onnx",
+                "reward": 0.3763136356137693,
+                "creation_time": 1749416913.4663186,
+                "auxillary_file_paths": [
+                    "results\\q6\\SeekerRays\\SeekerRays-999894.pt"
+                ]
+            },
+            {
+                "steps": 1499997,
+                "file_path": "results\\q6\\SeekerRays\\SeekerRays-1499997.onnx",
+                "reward": -1.0338320660271816,
+                "creation_time": 1749418554.862956,
+                "auxillary_file_paths": [
+                    "results\\q6\\SeekerRays\\SeekerRays-1499997.pt"
+                ]
+            },
+            {
+                "steps": 1619494,
+                "file_path": "results\\q6\\SeekerRays\\SeekerRays-1619494.onnx",
+                "reward": 0.07078065645570557,
+                "creation_time": 1749418972.460811,
+                "auxillary_file_paths": [
+                    "results\\q6\\SeekerRays\\SeekerRays-1619494.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1619494,
+            "file_path": "results\\q6\\SeekerRays.onnx",
+            "reward": 0.07078065645570557,
+            "creation_time": 1749418972.460811,
+            "auxillary_file_paths": [
+                "results\\q6\\SeekerRays\\SeekerRays-1619494.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu116"
+    }
+}

@@ -96,13 +96,28 @@ public class SeekerRays : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         AddReward(durationPunishment);
-        float moveForwardInput = actionBuffers.ContinuousActions[1];
         float moveSidewaysInput = actionBuffers.ContinuousActions[0];
+        float moveForwardInput = actionBuffers.ContinuousActions[1];
         Vector3 move = (transform.forward * moveForwardInput) + (transform.right * moveSidewaysInput);
         agentRigid.AddForce(move.normalized * forceMultiplier, ForceMode.Force);
 
+        //float rotateAction = actionBuffers.ContinuousActions[2];
+        //agentRigid.angularVelocity = Vector3.up * rotateAction * rotationSpeed;
         float rotateAction = actionBuffers.ContinuousActions[2];
-        agentRigid.angularVelocity = Vector3.up * rotateAction * rotationSpeed;
+        transform.Rotate(Vector3.up * rotateAction * rotationSpeed * Time.fixedDeltaTime);
+
+        // Straf op basis van afstand tot key of deur
+
+        if (!keyCollected && agentKey != null)
+        {
+            float distanceToKey = Vector3.Distance(transform.localPosition, agentKey.transform.localPosition);
+            AddReward(-0.0001f * distanceToKey);
+        }
+        else if (keyCollected && enableDoorSystem && agentTargetDoor != null)
+        {
+            float distanceToDoor = Vector3.Distance(transform.localPosition, agentTargetDoor.transform.localPosition);
+            AddReward(-0.0001f * distanceToDoor);
+        }
 
         // Val check
         if (transform.localPosition.y < -1f)
@@ -142,19 +157,6 @@ public class SeekerRays : Agent
             // StartCoroutine(RespawnKeyAfterPickup());
         }
 
-        // Straf op basis van afstand tot key of deur
-        if (!keyCollected && agentKey != null)
-        {
-            float distanceToKey = Vector3.Distance(transform.localPosition, agentKey.transform.localPosition);
-            AddReward(-0.001f * distanceToKey);
-        }
-        else if (keyCollected && enableDoorSystem && agentTargetDoor != null)
-        {
-            float distanceToDoor = Vector3.Distance(transform.localPosition, agentTargetDoor.transform.localPosition);
-            AddReward(-0.001f * distanceToDoor);
-        }
-
-
         if (other.gameObject.CompareTag("agentDoor"))
         {
             if (keyCollected)
@@ -166,7 +168,7 @@ public class SeekerRays : Agent
             else
             {
                 // Straf voor de deur aanraken zonder sleutel
-                AddReward(-0.2f);
+                AddReward(-0.4f);
                 Debug.Log("Hit door without key, applying penalty.");
             }
         }

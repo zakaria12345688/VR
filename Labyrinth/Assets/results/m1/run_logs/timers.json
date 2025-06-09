@@ -1,0 +1,49 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1749485776",
+        "python_version": "3.9.13 (main, Oct 13 2022, 21:23:06) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\xdcoc\\anaconda3\\envs\\mlagents-0.29\\Scripts\\mlagents-learn SeekerAgent.yaml --run-id=m1 --resume",
+        "mlagents_version": "0.29.0",
+        "mlagents_envs_version": "0.29.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.13.1+cu116",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1749485787"
+    },
+    "total": 10.4580287,
+    "count": 1,
+    "self": 0.008431800000000322,
+    "children": {
+        "run_training.setup": {
+            "total": 0.09639219999999993,
+            "count": 1,
+            "self": 0.09639219999999993
+        },
+        "TrainerController.start_learning": {
+            "total": 10.3532047,
+            "count": 1,
+            "self": 9.089999999822851e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 8.542254100000001,
+                    "count": 1,
+                    "self": 8.542254100000001
+                },
+                "TrainerController._save_models": {
+                    "total": 1.8108597,
+                    "count": 1,
+                    "self": 0.009011499999999728,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 1.8018482000000002,
+                            "count": 1,
+                            "self": 1.8018482000000002
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

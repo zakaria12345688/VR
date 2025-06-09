@@ -1,0 +1,29 @@
+{
+    "SeekerRays": {
+        "checkpoints": [
+            {
+                "steps": 7072,
+                "file_path": "results\\l11\\SeekerRays\\SeekerRays-7072.onnx",
+                "reward": 0.09440038772299886,
+                "creation_time": 1749484736.9116492,
+                "auxillary_file_paths": [
+                    "results\\l11\\SeekerRays\\SeekerRays-7072.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7072,
+            "file_path": "results\\l11\\SeekerRays.onnx",
+            "reward": 0.09440038772299886,
+            "creation_time": 1749484736.9116492,
+            "auxillary_file_paths": [
+                "results\\l11\\SeekerRays\\SeekerRays-7072.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu116"
+    }
+}

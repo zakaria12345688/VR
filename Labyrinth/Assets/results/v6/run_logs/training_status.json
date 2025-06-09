@@ -1,0 +1,65 @@
+{
+    "SeekerRays": {
+        "checkpoints": [
+            {
+                "steps": 274893,
+                "file_path": "results\\v6\\SeekerRays\\SeekerRays-274893.onnx",
+                "reward": 0.7886300109326839,
+                "creation_time": 1749489655.7597857,
+                "auxillary_file_paths": [
+                    "results\\v6\\SeekerRays\\SeekerRays-274893.pt"
+                ]
+            },
+            {
+                "steps": 499942,
+                "file_path": "results\\v6\\SeekerRays\\SeekerRays-499942.onnx",
+                "reward": null,
+                "creation_time": 1749490288.9223228,
+                "auxillary_file_paths": [
+                    "results\\v6\\SeekerRays\\SeekerRays-499942.pt"
+                ]
+            },
+            {
+                "steps": 513946,
+                "file_path": "results\\v6\\SeekerRays\\SeekerRays-513946.onnx",
+                "reward": 0.788077506236732,
+                "creation_time": 1749490317.870281,
+                "auxillary_file_paths": [
+                    "results\\v6\\SeekerRays\\SeekerRays-513946.pt"
+                ]
+            },
+            {
+                "steps": 999944,
+                "file_path": "results\\v6\\SeekerRays\\SeekerRays-999944.onnx",
+                "reward": 0.7192127461496153,
+                "creation_time": 1749491851.203661,
+                "auxillary_file_paths": [
+                    "results\\v6\\SeekerRays\\SeekerRays-999944.pt"
+                ]
+            },
+            {
+                "steps": 1069361,
+                "file_path": "results\\v6\\SeekerRays\\SeekerRays-1069361.onnx",
+                "reward": 0.7734755157278135,
+                "creation_time": 1749492059.945339,
+                "auxillary_file_paths": [
+                    "results\\v6\\SeekerRays\\SeekerRays-1069361.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1069361,
+            "file_path": "results\\v6\\SeekerRays.onnx",
+            "reward": 0.7734755157278135,
+            "creation_time": 1749492059.945339,
+            "auxillary_file_paths": [
+                "results\\v6\\SeekerRays\\SeekerRays-1069361.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu116"
+    }
+}
